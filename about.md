@@ -4,27 +4,38 @@ title: About
 ---
 
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+Im seeking people to help me making this project great. SW/HW/Mechanics/Documentaion etc. 
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+Sensors Unleashed tries to create a community driven sensor network. 
 
-There are currently two themes built on Poole:
+## What is the Sensors Unleashed network
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+So far 3 device types has been made:
+* A mains detect device
+* A Relay device
+* A pulse detector
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+A device in the network can be paired with any another device available in the same network. 
+Say you want to turn on the coffee machine when you turn on the lightswitch in the bedroom. This is done
+by asking a mains detect device to send a message when the mains goes from off -> on. A relay device be
+handling the power to the coffee machine. When the light is turned on the relay turns on the coffee machine, 
+but not off when the light is turned off again.
 
-## Setup
+The mains detect device know nothing about the relay device, and the relay device know nothing about the mains
+detect device. The mains detecter knows that when is has an event, it has to transmit it to a list of attached devices.
+All devices can handle the following events:
+* Above
+* Below
+* Change
 
-Some fun facts about the setup of this project include:
+All devices can receive events from many and send out event to many.
+There are no central controller handling the logics. This means, that any error in the network will be local to
+the bindings that perticular device is attached to.
 
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.org), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
+The setups is done through a gui tool, which knows of all the sensors. This tool is able to setup the bindings, and 
+the levels for when to transmit a given event - a binding is stored in the the transmitting devices. The gui tool 
+is only for setup - nothing is stored centrally.
 
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+All sensors can also be queried, if a polling scheme is more suitable for an application.
+  

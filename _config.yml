@@ -18,8 +18,18 @@ author:
 
 paginate:         5
 
+# Pages
+pages:
+  Archive: '/archive'
+  About: '/about'
+  Tags: '/tags'
+
 # Custom vars
 version:          2.0.0
 
 github:
   repo:           https://github.com/SensorsUnleashed
+
+sass:
+  sass_dir: _sass
+  style: :compressed

@@ -51,8 +51,6 @@ I made 3 devices:
 # Marketing
 * ~~Create a landing page~~
 * ~~Create a blog~~
-* Make us visible by answering questions in various forums (Non intrusive)
-* Blog about the project progress
 * Ask people with shared interests to get involved. Supply them with hardware if necessary.
 * When the radioOne board is fully tested, put it on [Tindie](https://www.tindie.com/)
 * Put the zb3219PA daughter board on [Tindie](https://www.tindie.com/)

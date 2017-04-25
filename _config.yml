@@ -10,7 +10,8 @@ title:            Sensors Unleashed Blog
 tagline:          'Open Source wireless control'
 description:      'Think, Invent, Present, Again!!'         
 baseurl:          /blog
-url:              http://www.sensorsunleashed.com
+url:              https://www.sensorsunleashed.com
+enforce_ssl:      www.sensorsunleashed.com
 
 author:
   name:           'Ole Nissen'

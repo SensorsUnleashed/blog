@@ -159,7 +159,7 @@ If a node pair is close to each other, the pairs might as well use the local-lin
 
 **Secure the communication**
 
-There needs to be a safe deployment and communication path. For now its ok, but to reach production level this issue is important. I know there has been put a lot of work in this from the contiki-ng community, so by the time I start to work on this, I hope the contiki-ng team has already made the most part which I can pull-in.
+There needs to be a safe deployment and communication path. For now its OK but to reach production level this issue is important. I know there has been put a lot of work in this from the contiki-ng community, so by the time I start to work on this, I hope the contiki-ng team has already made the most part which I can pull-in.
 
 ------
 ## High Level
@@ -177,13 +177,7 @@ It can do:
   * Pair a device with any other device in any node
   * Reboot a node
 
-**PENDING**
-
-**Have the GUI tool work in Windows. For now it runs in a Linux environment**
-
-**Create examples for the test devices**
-
-**Create a graph tool to monitor the devices in the network**
+**Create a plot that monitors the devices in the network**
 
 *I figure a tool that monitors the household consumption with the pulse sensor, and marks on the plot when events are detected in the network (lights turned on/off, coffee machine etc.) The tool is only for demonstration purposes. I think I will make it in node.js or python.*
 
@@ -194,22 +188,21 @@ I have made a couple of small examples:
 
 I will try to make a blog post about how this was done. Of course the source code for the tools will be put on github.
 
-**Port to android/ios**
+**PENDING**
+
+**Have the GUI tool work in Windows. For now it only runs in a Linux environment**
+
+**Create examples for the test devices**
+
+**Port the setup/configuration tool to android/ios**
 
 The configuration tool has been made using [QT](https://www.qt.io/) which is cross platform. It will be nice to have the tool working on an iPad or android tablet.
 
 ## Common
-* Make the setup easier to get going for new contributors.
+* Make the development setup easier to get going for new contributors.
 
 # Documentation
 * Create documentation for how to setup the environment and what tools to use
 * Document each test sensor. What is the intention with it, how is it made, what can be done etc.
 * Document various use cases for Sensors Unleashed - supply illustrations
-
-# Marketing
-* ~~Create a landing page~~
-* ~~Create a blog~~
-* Ask people with shared interests to get involved. Supply them with hardware if necessary.
-* When the radioOne board is fully tested, put it on [Tindie](https://www.tindie.com/)
-* Put the zb3219PA daughter board on [Tindie](https://www.tindie.com/)
 * Make the project meet the requirements of the [Contiki OS](https://github.com/contiki-os/contiki/wiki/Code-Contributions#new-platforms).

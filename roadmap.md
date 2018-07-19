@@ -51,7 +51,7 @@ The sole purpose of this project is basically to convert various physial actions
 -------------
 **DONE**
 
-*Create our [own CC2538 board](https://github.com/SensorsUnleashed/RadioOne).
+*Create our [own CC2538 board](https://github.com/SensorsUnleashed/RadioOne).*
 
 Its perfectly fine to use pre-fabricated radio modules, but for how long will they keep produce those? To keep prices low, form factor small and delivery time short its better to have our own radio. I have decided to have the form factor like the XBee. This way it's my hope that we can use some of the projects made for that platform for expanding ours as well.
 
@@ -104,23 +104,102 @@ In my day job I'm working on a board with the STM32F429 processor. It's a nice a
 ----------
 # Software
 ## Embedded
-* ~~Setup the [contiki](http://www.contiki-os.org/) environment~~
-* Enable [CoAP](http://coap.technology/) and create a standard for communicating with each device
-  * This work has started and for the most part done. The protocol is still subject for change
-* ~~Create the pairing mechanism~~
-* ~~Create the event mechanism, so that events are fired at the time specified in the configuration~~
-* Create the event receive mechanism for a device. What should happen when e.g. a device receives an "above event", the device should in a standard way post its capabilities and the GUI should then set it up.
+-----------
+**DONE**
 
+**Setup the [contiki](http://www.contiki-os.org/) environment**
+
+The development environment has been made, so that all sensors are as modules which can easily be added to any board. Documenting this process is still pending.
+
+**Create the pairing mechanism**
+
+The pairing mechanism is using the [CoAP](http://coap.technology/) subscribe/notify feature.
+All devices in the sensors unleashed network can be classified as a actuator or a sensor. The actuator is always the device creating the action, and the sensor what triggers the action. A relay will request a switch to be notified if it posts an change/above or below event. The setup tool can pair any events with any action.
+
+**Create the event mechanism**
+
+All devices will post events if anyone is interested.
+Example:
+
+The relay will post:
+Above event when closed - state = 1
+Below when open - state = 0
+Change when state change is greater than or equal to 1 - meaning when the state changes.
+
+Its up to the designer to decide what triggers an event, but its up to the user to enable or change the levels - this is done through the configuration tool.
+
+**Create a bootloader and a firmware update mechanism**
+
+It is possible to update the firmware in the nodes. This can be done without risk of bricking the hardware and is done via the setup tool. If for some reason the active firmware has an error making it unable to communicate, the previous working firmware can be used by holding-in the user button on the radio at boot.
+
+**Port the software to the Contiki-ng operating system**
+
+Because progress is faster on the Contiki-ng operating system I decided to go this route. The nodes are now communicating using the RPL Lite routing layer and this is working quite nice.
+
+The [Gitter Contiki-ng channel](https://gitter.im/contiki-ng/Developers) is a major help. Thanks guys.
+
+**Create a mechanism that handles more devices subscribing to one sensor**
+
+Any node can contain more than one device. If more devices in one node subscribes to the same device in another node, the link will be removed if any of the subscribers un-subscribes. A mechanism to handle this has been made.
+
+**Store all settings so that it remains during power cycle**
+
+When limits are changed from the setup tool, there is now a possibility to have them stored in flash. This configuration will survive software upgrades, power failures etc.
+
+**Re-subscribe at power up**
+
+If a node with subscribers where off at the time a node wanted to be paired, the pairing would fail. A mechanism to handle this has been introduced.
+
+-----
+**PENDING**
+
+**Handle local-link pairs**
+
+If a node pair is close to each other, the pairs might as well use the local-link interface to communicate. Normally when the node boot it will wait for the network to build before a communication will start. This causes a rather long boot-up time. If we instead start communicating with local-links, the local nodes will almost instantly be up and running. The RPL will still be necessary to communicate accross multible hops (internet, or further away nodes).
+
+**Secure the communication**
+
+There needs to be a safe deployment and communication path. For now its ok, but to reach production level this issue is important. I know there has been put a lot of work in this from the contiki-ng community, so by the time I start to work on this, I hope the contiki-ng team has already made the most part which I can pull-in.
+
+------
 ## High Level
-* ~~Create a GUI tool that can test functionality and pair devices~~
-* Have the GUI tool work in Windows. For now it runs in a Linux environment.
-* Create examples for the test devices.
-* Create a graph tool to monitor the devices in the network. I figure a tool that monitors the household consumption with the pulse sensor, and marks on the plot when events are detected in the network (lights turned on/off, coffee machine etc.) The tool is only for demonstration purposes. I think I will make it in node.js or python.
-* Port to android/ios
+
+**DONE**
+
+**Create a GUI tool that can test functionality and pair devices**
+
+A configuration tool has been made. Whenever new features is introduced to the Sensors Unleashed project, the configuration tool is updated.
+It can do:
+  * Retrieve all the devices of a node
+  * Read the current firmware version
+  * Remote upgrade or downgrade the firmware of a node
+  * Test the functionality of a device - toggle a relay, read counters etc.
+  * Pair a device with any other device in any node
+  * Reboot a node
+
+**PENDING**
+
+**Have the GUI tool work in Windows. For now it runs in a Linux environment**
+
+**Create examples for the test devices**
+
+**Create a graph tool to monitor the devices in the network**
+
+*I figure a tool that monitors the household consumption with the pulse sensor, and marks on the plot when events are detected in the network (lights turned on/off, coffee machine etc.) The tool is only for demonstration purposes. I think I will make it in node.js or python.*
+
+I have made a couple of small examples:
+
+  * A Dash board using the python project [Dash by plotly](https://plot.ly/products/dash/) showing the household consumption based on inputs from the pulse sensor
+  * Pulse count data gathering using the python lib [CoAPthon3](https://github.com/Tanganelli/CoAPthon3)
+
+I will try to make a blog post about how this was done. Of course the source code for the tools will be put on github.
+
+**Port to android/ios**
+
+The configuration tool has been made using [QT](https://www.qt.io/) which is cross platform. It will be nice to have the tool working on an iPad or android tablet.
 
 ## Common
 * Make the setup easier to get going for new contributors.
-* Secure the communication - from .
 
 # Documentation
 * Create documentation for how to setup the environment and what tools to use

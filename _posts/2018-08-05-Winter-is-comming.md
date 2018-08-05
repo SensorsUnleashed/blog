@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Winter is comming
+title: Winter is coming
 comments: True
 tags: [3D Printing, FreeCad, OpenSCAD]
 ---

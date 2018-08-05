@@ -8,14 +8,14 @@ permalink:        pretty
 # Setup
 title:            Sensors Unleashed Blog
 tagline:          'Open Source wireless control'
-description:      'Think, Invent, Present, Again!!'         
+description:      'Think, Invent, Present, Again!!'
 baseurl:          /blog
 url:              https://www.sensorsunleashed.com
 enforce_ssl:      www.sensorsunleashed.com
 
 author:
   name:           'Ole Nissen'
-  url:            https://twitter.com/olenissen
+  url:            https://twitter.com/SensorsUnleash1
 
 paginate:         5
 
